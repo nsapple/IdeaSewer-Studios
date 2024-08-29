@@ -25,7 +25,7 @@ Meet our brilliant team members who make it all possible! 🤝
 
 ### 🖌️ waxylotl
 
-![waxylotl](https://example.com/wxy.png)
+![waxylotl]([https://example.com/wxy.png](https://discord.com/channels/@me/1261365518200344749/1278530748122665031))
 - **Role:** Creative Director
 - **Specialties:** Visual storytelling, design innovation, and creative flair!
 
