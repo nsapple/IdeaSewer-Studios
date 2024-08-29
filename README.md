@@ -19,7 +19,7 @@ Meet our brilliant team members who make it all possible! 🤝
 
 ### 🎩 nsapple
 
-![nsapple](https://example.com/nsapple.png)
+nsapple
 - **Role:** Tech Lead
 - **Specialties:** User experiences, backend systems, and all things tech!
 
@@ -49,8 +49,8 @@ Meet our brilliant team members who make it all possible! 🤝
 
 ## 🔗 Links
 
-- [Website](https://example.com)
-- [GitHub](https://github.com/example)
+- [Website](https://nsapple.github.io/nsapple)
+- [GitHub](https://github.com/nsapple)
 - [Contact Us](mailto:contact@example.com)
 
 ---
