@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeaSewer Studios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --section-bg: #f0f0f0;
+            --accent-yellow: #ffd900;
+            --accent-pink: #f836c1;
+            --nsapple-color: #e6f7ff;
+            --waxylotl-color: #fff0f5;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --section-bg: #2a2a2a;
+            --nsapple-color: #003366;
+            --waxylotl-color: #660033;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-pink));
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--bg-color);
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--bg-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        main {
+            padding: 4rem 0;
+        }
+
+        .section {
+            background-color: var(--section-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--accent-pink);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-yellow);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        p, dd {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            margin: 2rem 0;
+        }
+
+        .toggle {
+            background-color: var(--accent-pink);
+            color: var(--bg-color);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle:hover {
+            background-color: var(--accent-yellow);
+            color: var(--text-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background-color: var(--bg-color);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            fill: var(--accent-pink);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-section {
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .faq-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nsapple-faq {
+            background-color: var(--nsapple-color);
+        }
+
+        .waxylotl-faq {
+            background-color: var(--waxylotl-color);
+        }
+
+        dt {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-pink);
+        }
+
+        dd {
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-yellow));
+            color: var(--bg-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">IdeaSewer Studios</a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#team">Team</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="toggle-container">
+            <button class="toggle" onclick="toggleDarkMode()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                Toggle Theme
+            </button>
+        </div>
+
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>IdeaSewer Studios is a creative powerhouse, bringing innovative ideas to life through cutting-edge technology and design. We blend imagination with expertise to create digital experiences that inspire and transform.</p>
+        </section>
+
+        <section id="team" class="section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    
+                        <img src="nsapple.png" alt="nsapple" style="width: 80px; height: 80px; margin-bottom: 1rem;">
+                    </a>
+                    <h3>nsapple</h3>
+                    <p>Our visionary tech lead, specializing in creating seamless user experiences and robust backend systems.</p>
+                </div>
+                <div class="team-member">
+                  
+                    <img src="wxy.png" alt="waxylotl" style="width: 80px; height: 80px; margin-bottom: 1rem;">
+                  </a>
+                    <h3>waxylotl</h3>
+                    <p>Our creative director, bringing a unique perspective to design and pushing the boundaries of visual storytelling.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <h2>FAQ</h2>
+            <div class="faq-grid">
+                <div class="faq-section nsapple-faq">
+                    <h3>nsapple FAQ</h3>
+                    <dl>
+                        <dt>What technologies does nsapple specialize in?</dt>
+                        <dd>nsapple is proficient in a wide range of technologies, including but not limited to JavaScript, Python, and cloud computing platforms.</dd>
+                        <dt>How does nsapple approach problem-solving?</dt>
+                        <dd>nsapple believes in a methodical approach, breaking down complex problems into manageable components and leveraging cutting-edge tools to find innovative solutions.</dd>
+                    </dl>
+                </div>
+                <div class="faq-section waxylotl-faq">
+                    <h3>waxylotl FAQ</h3>
+                    <dl>
+                      <dt>What is waxylotl's design philosophy?</dt>
+                      <dd>waxylotl emphasizes the fusion of form and function, aiming to create designs that are both visually captivating and intuitive to use.</dd>
+                      <dt>What tools does waxylotl use for design?</dt>
+                      <dd>Waxylotl is proficient in Blender and Unreal Engine 5, using these tools to craft detailed 3D models and immersive environments.</dd>
+
+                    </dl>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
