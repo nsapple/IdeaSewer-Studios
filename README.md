@@ -50,7 +50,7 @@ nsapple
 
 - [Website](https://nsapple.github.io/nsapple)
 - [GitHub](https://github.com/nsapple)
-- [Contact Us](mailto:contact@example.com)
+- [Contact Us](mailto:ideasewer.studios@gmail.com)
 
 ---
 
