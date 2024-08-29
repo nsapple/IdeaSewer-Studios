@@ -20,7 +20,7 @@ Meet our brilliant team members who make it all possible! 🤝
 ### 🎩 nsapple
 
 nsapple
-- **Role:** Tech Lead
+- **Role:** Nerd
 - **Specialties:** User experiences, backend systems, and all things tech!
 
 ### 🖌️ waxylotl
