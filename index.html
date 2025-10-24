@@ -1,314 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IdeaSewer Studios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --section-bg: #f0f0f0;
-            --accent-yellow: #ffd900;
-            --accent-pink: #f836c1;
-            --nsapple-color: #e6f7ff;
-            --waxylotl-color: #fff0f5;
-        }
-
-        .dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --section-bg: #2a2a2a;
-            --nsapple-color: #003366;
-            --waxylotl-color: #660033;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-pink));
-            padding: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--bg-color);
-            text-decoration: none;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--bg-color);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
-
-        .nav-links a:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-
-        main {
-            padding: 4rem 0;
-        }
-
-        .section {
-            background-color: var(--section-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            color: var(--accent-pink);
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-yellow);
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        p, dd {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: flex-end;
-            margin: 2rem 0;
-        }
-
-        .toggle {
-            background-color: var(--accent-pink);
-            color: var(--bg-color);
-            border: none;
-            padding: 0.7rem 1.5rem;
-            cursor: pointer;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .toggle:hover {
-            background-color: var(--accent-yellow);
-            color: var(--text-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-member {
-            background-color: var(--bg-color);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-member svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1rem;
-            fill: var(--accent-pink);
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .faq-section {
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .faq-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nsapple-faq {
-            background-color: var(--nsapple-color);
-        }
-
-        .waxylotl-faq {
-            background-color: var(--waxylotl-color);
-        }
-
-        dt {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--accent-pink);
-        }
-
-        dd {
-            margin-bottom: 1.5rem;
-        }
-
-        footer {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-yellow));
-            color: var(--bg-color);
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Barebones, Fluid Interactions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Intentionally no styling beyond basic layout sanity for visibility -->
+  <style>
+    /* Keep it bare: only layout nudges so content isn't smashed together */
+    body { margin: 16px; }
+    nav a { margin-right: 8px; }
+    [hidden] { display: none !important; }
+    /* Visible focus for accessibility using default UA outline */
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">IdeaSewer Studios</a>
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#team">Team</a>
-                    <a href="#faq">FAQ</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+  <nav aria-label="Primary">
+    <a href="#home" data-link>Home</a>
+    <a href="#gallery" data-link>Gallery</a>
+    <a href="#about" data-link>About</a>
+    <button id="openModal">Open Modal</button>
+  </nav>
 
-    <main class="container">
-        <div class="toggle-container">
-            <button class="toggle" onclick="toggleDarkMode()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-                Toggle Theme
-            </button>
-        </div>
+  <main id="app" tabindex="-1">
+    <!-- Sections (simple SPA-style switching) -->
+    <section id="home" data-route>
+      <h1>Home</h1>
+      <p>This is a totally barebones page. Interactions are fluid via the Web Animations API.</p>
 
-        <section id="about" class="section">
-            <h2>About Us</h2>
-            <p>IdeaSewer Studios is a creative powerhouse, bringing innovative ideas to life through cutting-edge technology and design. We blend imagination with expertise to create digital experiences that inspire and transform.</p>
-        </section>
+      <!-- Tabs -->
+      <div role="tablist" aria-label="Demo Tabs">
+        <button role="tab" aria-selected="true" data-tab="t1">Tab 1</button>
+        <button role="tab" aria-selected="false" data-tab="t2">Tab 2</button>
+        <button role="tab" aria-selected="false" data-tab="t3">Tab 3</button>
+      </div>
+      <div id="t1" role="tabpanel">Tab 1 content. Animates in/out.</div>
+      <div id="t2" role="tabpanel" hidden>Tab 2 content. Also smooth.</div>
+      <div id="t3" role="tabpanel" hidden>Tab 3 content. Yep, fluid.</div>
 
-        <section id="team" class="section">
-            <h2>Our Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    
-                        <img src="nsapple.png" alt="nsapple" style="width: 80px; height: 80px; margin-bottom: 1rem;">
-                    </a>
-                    <h3>nsapple</h3>
-                    <p>Our visionary tech lead, specializing in creating seamless user experiences and robust backend systems.</p>
-                </div>
-                <div class="team-member">
-                  
-                    <img src="wxy.png" alt="waxylotl" style="width: 80px; height: 80px; margin-bottom: 1rem;">
-                  </a>
-                    <h3>waxylotl</h3>
-                    <p>Our creative director, bringing a unique perspective to design and pushing the boundaries of visual storytelling.</p>
-                </div>
-            </div>
-        </section>
+      <!-- Accordion -->
+      <h2>FAQ (Accordion)</h2>
+      <details>
+        <summary>What is this?</summary>
+        <div>Just a minimal page with fancy-but-lightweight animation.</div>
+      </details>
+      <details>
+        <summary>How does it animate?</summary>
+        <div>Using the Web Animations API and a small spring helper.</div>
+      </details>
 
-        <section id="faq" class="section">
-            <h2>FAQ</h2>
-            <div class="faq-grid">
-                <div class="faq-section nsapple-faq">
-                    <h3>nsapple FAQ</h3>
-                    <dl>
-                        <dt>What technologies does nsapple specialize in?</dt>
-                        <dd>nsapple is proficient in a wide range of technologies, including but not limited to JavaScript, Python, and cloud computing platforms.</dd>
-                        <dt>How does nsapple approach problem-solving?</dt>
-                        <dd>nsapple believes in a methodical approach, breaking down complex problems into manageable components and leveraging cutting-edge tools to find innovative solutions.</dd>
-                    </dl>
-                </div>
-                <div class="faq-section waxylotl-faq">
-                    <h3>waxylotl FAQ</h3>
-                    <dl>
-                      <dt>What is waxylotl's design philosophy?</dt>
-                      <dd>waxylotl emphasizes the fusion of form and function, aiming to create designs that are both visually captivating and intuitive to use.</dd>
-                      <dt>What tools does waxylotl use for design?</dt>
-                      <dd>Waxylotl is proficient in Blender and Unreal Engine 5, using these tools to craft detailed 3D models and immersive environments.</dd>
+      <!-- List add/remove -->
+      <h2>List</h2>
+      <form id="addForm">
+        <label>
+          Item:
+          <input id="itemInput" required />
+        </label>
+        <button type="submit">Add</button>
+      </form>
+      <ul id="list"></ul>
+    </section>
 
-                    </dl>
-                </div>
-            </div>
-        </section>
-    </main>
+    <section id="gallery" data-route hidden>
+      <h1>Gallery</h1>
+      <p>Pretend images would go here. Click items to remove them (with animation).</p>
+      <ul id="galleryList">
+        <li><button data-remove>Remove</button> Gallery item A</li>
+        <li><button data-remove>Remove</button> Gallery item B</li>
+        <li><button data-remove>Remove</button> Gallery item C</li>
+      </ul>
+    </section>
 
+    <section id="about" data-route hidden>
+      <h1>About</h1>
+      <p>No styles. Just smooth motion, accessible focus management, and reduced-motion support.</p>
+      <button id="spinBtn">Play Micro Interaction</button>
+    </section>
+  </main>
 
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
+  <!-- Modal (no styling) -->
+  <div id="modalRoot" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div>
+      <h2 id="modalTitle">Modal</h2>
+      <p>Opens and closes with fluid motion. Press ESC to close.</p>
+      <button id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // ========= Motion utilities =========
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const DUR = prefersReduced ? 0 : 300;
+    const DUR_LONG = prefersReduced ? 0 : 450;
+    const EASE = 'cubic-bezier(.2,.8,.2,1)';
+    const fade = (el, show=true, dur=DUR) => el.animate(
+      [{opacity: show? 0 : 1}, {opacity: show? 1 : 0}],
+      {duration: dur, easing: EASE, fill: 'both'}
+    ).finished;
+
+    // spring-like translateY using WAAPI keyframes (cheap/fake spring)
+    function pop(el, dir = 1, distance = 16, dur = DUR) {
+      if (prefersReduced) return Promise.resolve();
+      return el.animate([
+        { transform: `translateY(${dir*distance}px)`, offset: 0 },
+        { transform: 'translateY(0px)', offset: 1 }
+      ], { duration: dur, easing: 'cubic-bezier(.12,.9,.17,1)', fill: 'both' }).finished;
+    }
+
+    // scale micro interaction
+    const micro = (el) => prefersReduced ? Promise.resolve() :
+      el.animate([{ transform: 'scale(0.96)' }, { transform: 'scale(1)' }],
+                 { duration: 150, easing: 'ease-out', fill: 'both' }).finished;
+
+    // slide+fade helper
+    function slideFade(el, show = true, axis = 'Y', distance = 20, dur = DUR_LONG) {
+      if (prefersReduced) { el.hidden = !show; return Promise.resolve(); }
+      const from = show ? distance : 0;
+      const to = show ? 0 : -distance/2;
+      el.hidden = false;
+      return el.animate([
+        { opacity: show? 0 : 1, transform: `translate${axis}(${from}px)` },
+        { opacity: show? 1 : 0, transform: `translate${axis}(${to}px)` }
+      ], { duration: dur, easing: EASE, fill: 'both' }).finished.then(() => {
+        el.hidden = !show;
+      });
+    }
+
+    // ========= Simple router (section switching) =========
+    const routes = Array.from(document.querySelectorAll('[data-route]'));
+    const links = Array.from(document.querySelectorAll('[data-link]'));
+    function showRoute(id) {
+      const next = document.getElementById(id) || routes[0];
+      const cur = routes.find(r => !r.hidden);
+      if (cur === next) return;
+
+      Promise.all([
+        cur ? slideFade(cur, false, 'Y', 30, DUR_LONG) : Promise.resolve(),
+        slideFade(next, true, 'Y', 30, DUR_LONG)
+      ]).then(() => {
+        next.querySelector('h1')?.focus?.();
+        document.getElementById('app').focus();
+      });
+    }
+    links.forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = a.getAttribute('href').replace('#','');
+      showRoute(id);
+      history.pushState({}, '', `#${id}`);
+      micro(a);
+    }));
+    window.addEventListener('popstate', () => {
+      const id = location.hash.replace('#','') || 'home';
+      showRoute(id);
+    });
+    // Initial route
+    showRoute(location.hash.replace('#','') || 'home');
+
+    // ========= Tabs =========
+    const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+    const tabpanels = new Map(tabButtons.map(b => [b, document.getElementById(b.dataset.tab)]));
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        tabButtons.forEach(b => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+        for (const [b, panel] of tabpanels.entries()) {
+          if (b === btn) {
+            await slideFade(panel, true, 'Y', 16, DUR);
+            await pop(panel, -1, 10, DUR);
+          } else {
+            await slideFade(panel, false, 'Y', 16, DUR);
+          }
         }
-    </script>
+        micro(btn);
+      });
+    });
+
+    // ========= Accordion (animate <details>) =========
+    document.querySelectorAll('details').forEach(d => {
+      const content = d.querySelector('div');
+      if (!content) return;
+      d.addEventListener('toggle', () => {
+        slideFade(content, d.open, 'Y', 12, DUR);
+      });
+    });
+
+    // ========= List add/remove with FLIP-ish animation =========
+    const list = document.getElementById('list');
+    document.getElementById('addForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = document.getElementById('itemInput');
+      const li = document.createElement('li');
+      const remove = document.createElement('button');
+      remove.textContent = 'Remove';
+      remove.addEventListener('click', () => removeItem(li));
+      li.appendChild(remove);
+      li.append(' ', input.value);
+      input.value = '';
+      list.appendChild(li);
+      await slideFade(li, true, 'Y', 14, DUR);
+      await pop(li, -1, 8, DUR);
+    });
+
+    async function removeItem(li) {
+      await slideFade(li, false, 'Y', 14, DUR);
+      li.remove();
+    }
+
+    // Also remove items in the gallery
+    document.getElementById('galleryList').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-remove]');
+      if (!btn) return;
+      removeItem(btn.closest('li'));
+    });
+
+    // ========= Modal =========
+    const modal = document.getElementById('modalRoot');
+    const openModalBtn = document.getElementById('openModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    let lastFocused = null;
+
+    function trapFocus(e) {
+      if (!modal.hidden && !modal.contains(e.target)) {
+        e.stopPropagation();
+        modal.querySelector('button, [href], input, select, textarea')?.focus();
+      }
+    }
+    async function openModal() {
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      await fade(modal, true, DUR_LONG);
+      modal.querySelector('#closeModal').focus();
+      document.addEventListener('focusin', trapFocus);
+    }
+    async function closeModal() {
+      await fade(modal, false, DUR_LONG);
+      modal.hidden = true;
+      document.removeEventListener('focusin', trapFocus);
+      lastFocused?.focus?.();
+    }
+    openModalBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+
+    // ========= Micro interactions =========
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('pointerdown', () => micro(el));
+      el.addEventListener('mouseenter', () => {
+        if (prefersReduced) return;
+        el.animate([{ transform: 'translateY(-1px)' }, { transform: 'translateY(0)' }],
+                   { duration: 120, easing: 'ease-out', fill: 'none' });
+      });
+    });
+
+    // ========= Demo micro interaction on About =========
+    document.getElementById('spinBtn').addEventListener('click', (e) => {
+      if (prefersReduced) return;
+      e.target.animate(
+        [{ transform: 'rotate(0deg) scale(1)' }, { transform: 'rotate(360deg) scale(1.05)' }, { transform: 'rotate(360deg) scale(1)' }],
+        { duration: 600, easing: 'cubic-bezier(.3,1,.3,1)' }
+      );
+    });
+  </script>
 </body>
 </html>
