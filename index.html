@@ -1,265 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Barebones, Fluid Interactions</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Intentionally no styling beyond basic layout sanity for visibility -->
-  <style>
-    /* Keep it bare: only layout nudges so content isn't smashed together */
-    body { margin: 16px; }
-    nav a { margin-right: 8px; }
-    [hidden] { display: none !important; }
-    /* Visible focus for accessibility using default UA outline */
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retro Minimal Smooth</title>
+<style>
+  :root {
+    --bg: #0c0c0c;
+    --fg: #00ff88;
+    --accent: #00aa55;
+    --hover: #55ffaa;
+    --font: "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  header, footer {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--accent);
+  }
+
+  footer {
+    border-top: 1px solid var(--accent);
+    border-bottom: none;
+    text-align: center;
+    opacity: 0.7;
+    font-size: 14px;
+    margin-top: auto;
+  }
+
+  h1 {
+    margin: 0;
+    letter-spacing: 2px;
+  }
+
+  nav a, nav button {
+    color: var(--fg);
+    background: transparent;
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    padding: 4px 10px;
+    margin: 3px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  nav a:hover, nav button:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
+
+  main {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .section {
+    display: none;
+  }
+
+  .section.active {
+    display: block;
+  }
+
+  form {
+    margin: 1em 0;
+  }
+
+  input {
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    color: var(--fg);
+    padding: 4px 8px;
+    font-family: inherit;
+  }
+
+  ul {
+    list-style-type: ">";
+    padding-left: 18px;
+  }
+
+  li {
+    margin: 4px 0;
+  }
+
+  dialog {
+    border: 1px solid var(--accent);
+    background: var(--bg);
+    color: var(--fg);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--fg);
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
 </head>
 <body>
-  <nav aria-label="Primary">
-    <a href="#home" data-link>Home</a>
-    <a href="#gallery" data-link>Gallery</a>
-    <a href="#about" data-link>About</a>
-    <button id="openModal">Open Modal</button>
-  </nav>
+  <header>
+    <h1>RETRO<span class="cursor"></span></h1>
+    <nav>
+      <a href="#" data-tab="home">Home</a>
+      <a href="#" data-tab="about">About</a>
+      <a href="#" data-tab="contact">Contact</a>
+      <button id="openModal">Modal</button>
+    </nav>
+  </header>
 
-  <main id="app" tabindex="-1">
-    <!-- Sections (simple SPA-style switching) -->
-    <section id="home" data-route>
-      <h1>Home</h1>
-      <p>This is a totally barebones page. Interactions are fluid via the Web Animations API.</p>
-
-      <!-- Tabs -->
-      <div role="tablist" aria-label="Demo Tabs">
-        <button role="tab" aria-selected="true" data-tab="t1">Tab 1</button>
-        <button role="tab" aria-selected="false" data-tab="t2">Tab 2</button>
-        <button role="tab" aria-selected="false" data-tab="t3">Tab 3</button>
-      </div>
-      <div id="t1" role="tabpanel">Tab 1 content. Animates in/out.</div>
-      <div id="t2" role="tabpanel" hidden>Tab 2 content. Also smooth.</div>
-      <div id="t3" role="tabpanel" hidden>Tab 3 content. Yep, fluid.</div>
-
-      <!-- Accordion -->
-      <h2>FAQ (Accordion)</h2>
-      <details>
-        <summary>What is this?</summary>
-        <div>Just a minimal page with fancy-but-lightweight animation.</div>
-      </details>
-      <details>
-        <summary>How does it animate?</summary>
-        <div>Using the Web Animations API and a small spring helper.</div>
-      </details>
-
-      <!-- List add/remove -->
-      <h2>List</h2>
+  <main>
+    <section id="home" class="section active">
+      <p>Welcome to the retro-minimal site — smooth motion, simple design.</p>
       <form id="addForm">
-        <label>
-          Item:
-          <input id="itemInput" required />
-        </label>
+        <label>Add item: <input id="itemInput" required></label>
         <button type="submit">Add</button>
       </form>
       <ul id="list"></ul>
     </section>
 
-    <section id="gallery" data-route hidden>
-      <h1>Gallery</h1>
-      <p>Pretend images would go here. Click items to remove them (with animation).</p>
-      <ul id="galleryList">
-        <li><button data-remove>Remove</button> Gallery item A</li>
-        <li><button data-remove>Remove</button> Gallery item B</li>
-        <li><button data-remove>Remove</button> Gallery item C</li>
-      </ul>
+    <section id="about" class="section">
+      <p>This page uses GSAP for perfectly fluid animations while keeping the 80s terminal look.</p>
     </section>
 
-    <section id="about" data-route hidden>
-      <h1>About</h1>
-      <p>No styles. Just smooth motion, accessible focus management, and reduced-motion support.</p>
-      <button id="spinBtn">Play Micro Interaction</button>
+    <section id="contact" class="section">
+      <p>Contact us at <strong>retrosite@void.net</strong> or through your nearest time machine.</p>
     </section>
   </main>
 
-  <!-- Modal (no styling) -->
-  <div id="modalRoot" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-    <div>
-      <h2 id="modalTitle">Modal</h2>
-      <p>Opens and closes with fluid motion. Press ESC to close.</p>
-      <button id="closeModal">Close</button>
-    </div>
-  </div>
+  <footer>© 1987-2087 Retro Systems International</footer>
+
+  <dialog id="modal">
+    <h2>Modal Window</h2>
+    <p>GSAP makes everything buttery smooth.</p>
+    <button id="closeModal">Close</button>
+  </dialog>
+
+  <!-- GSAP Animation Library -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
   <script>
-    // ========= Motion utilities =========
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const DUR = prefersReduced ? 0 : 300;
-    const DUR_LONG = prefersReduced ? 0 : 450;
-    const EASE = 'cubic-bezier(.2,.8,.2,1)';
-    const fade = (el, show=true, dur=DUR) => el.animate(
-      [{opacity: show? 0 : 1}, {opacity: show? 1 : 0}],
-      {duration: dur, easing: EASE, fill: 'both'}
-    ).finished;
+    // ===== Tab Switching =====
+    const tabs = document.querySelectorAll('[data-tab]');
+    const sections = document.querySelectorAll('.section');
 
-    // spring-like translateY using WAAPI keyframes (cheap/fake spring)
-    function pop(el, dir = 1, distance = 16, dur = DUR) {
-      if (prefersReduced) return Promise.resolve();
-      return el.animate([
-        { transform: `translateY(${dir*distance}px)`, offset: 0 },
-        { transform: 'translateY(0px)', offset: 1 }
-      ], { duration: dur, easing: 'cubic-bezier(.12,.9,.17,1)', fill: 'both' }).finished;
-    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const id = tab.dataset.tab;
+        const next = document.getElementById(id);
+        const current = document.querySelector('.section.active');
 
-    // scale micro interaction
-    const micro = (el) => prefersReduced ? Promise.resolve() :
-      el.animate([{ transform: 'scale(0.96)' }, { transform: 'scale(1)' }],
-                 { duration: 150, easing: 'ease-out', fill: 'both' }).finished;
+        if (current === next) return;
 
-    // slide+fade helper
-    function slideFade(el, show = true, axis = 'Y', distance = 20, dur = DUR_LONG) {
-      if (prefersReduced) { el.hidden = !show; return Promise.resolve(); }
-      const from = show ? distance : 0;
-      const to = show ? 0 : -distance/2;
-      el.hidden = false;
-      return el.animate([
-        { opacity: show? 0 : 1, transform: `translate${axis}(${from}px)` },
-        { opacity: show? 1 : 0, transform: `translate${axis}(${to}px)` }
-      ], { duration: dur, easing: EASE, fill: 'both' }).finished.then(() => {
-        el.hidden = !show;
-      });
-    }
-
-    // ========= Simple router (section switching) =========
-    const routes = Array.from(document.querySelectorAll('[data-route]'));
-    const links = Array.from(document.querySelectorAll('[data-link]'));
-    function showRoute(id) {
-      const next = document.getElementById(id) || routes[0];
-      const cur = routes.find(r => !r.hidden);
-      if (cur === next) return;
-
-      Promise.all([
-        cur ? slideFade(cur, false, 'Y', 30, DUR_LONG) : Promise.resolve(),
-        slideFade(next, true, 'Y', 30, DUR_LONG)
-      ]).then(() => {
-        next.querySelector('h1')?.focus?.();
-        document.getElementById('app').focus();
-      });
-    }
-    links.forEach(a => a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = a.getAttribute('href').replace('#','');
-      showRoute(id);
-      history.pushState({}, '', `#${id}`);
-      micro(a);
-    }));
-    window.addEventListener('popstate', () => {
-      const id = location.hash.replace('#','') || 'home';
-      showRoute(id);
-    });
-    // Initial route
-    showRoute(location.hash.replace('#','') || 'home');
-
-    // ========= Tabs =========
-    const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
-    const tabpanels = new Map(tabButtons.map(b => [b, document.getElementById(b.dataset.tab)]));
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', async () => {
-        tabButtons.forEach(b => b.setAttribute('aria-selected', 'false'));
-        btn.setAttribute('aria-selected', 'true');
-        for (const [b, panel] of tabpanels.entries()) {
-          if (b === btn) {
-            await slideFade(panel, true, 'Y', 16, DUR);
-            await pop(panel, -1, 10, DUR);
-          } else {
-            await slideFade(panel, false, 'Y', 16, DUR);
+        // Animate out current
+        gsap.to(current, {
+          duration: 0.4,
+          opacity: 0,
+          y: 20,
+          onComplete: () => {
+            current.classList.remove('active');
+            next.classList.add('active');
+            gsap.fromTo(next, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4 });
           }
-        }
-        micro(btn);
+        });
       });
     });
 
-    // ========= Accordion (animate <details>) =========
-    document.querySelectorAll('details').forEach(d => {
-      const content = d.querySelector('div');
-      if (!content) return;
-      d.addEventListener('toggle', () => {
-        slideFade(content, d.open, 'Y', 12, DUR);
-      });
-    });
+    // ===== Modal =====
+    const modal = document.getElementById('modal');
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
 
-    // ========= List add/remove with FLIP-ish animation =========
+    openModal.onclick = () => {
+      modal.showModal();
+      gsap.fromTo(modal, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
+    };
+
+    closeModal.onclick = () => {
+      gsap.to(modal, { scale: 0.8, opacity: 0, duration: 0.3, ease: "power1.in", onComplete: () => modal.close() });
+    };
+
+    // ===== List Add/Remove =====
     const list = document.getElementById('list');
-    document.getElementById('addForm').addEventListener('submit', async (e) => {
+    const form = document.getElementById('addForm');
+    const input = document.getElementById('itemInput');
+
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      const input = document.getElementById('itemInput');
       const li = document.createElement('li');
-      const remove = document.createElement('button');
-      remove.textContent = 'Remove';
-      remove.addEventListener('click', () => removeItem(li));
-      li.appendChild(remove);
-      li.append(' ', input.value);
-      input.value = '';
+      const btn = document.createElement('button');
+      btn.textContent = 'Remove';
+      btn.style.marginLeft = '6px';
+      li.textContent = input.value + ' ';
+      li.appendChild(btn);
       list.appendChild(li);
-      await slideFade(li, true, 'Y', 14, DUR);
-      await pop(li, -1, 8, DUR);
-    });
+      input.value = '';
+      gsap.fromTo(li, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4 });
 
-    async function removeItem(li) {
-      await slideFade(li, false, 'Y', 14, DUR);
-      li.remove();
-    }
-
-    // Also remove items in the gallery
-    document.getElementById('galleryList').addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-remove]');
-      if (!btn) return;
-      removeItem(btn.closest('li'));
-    });
-
-    // ========= Modal =========
-    const modal = document.getElementById('modalRoot');
-    const openModalBtn = document.getElementById('openModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    let lastFocused = null;
-
-    function trapFocus(e) {
-      if (!modal.hidden && !modal.contains(e.target)) {
-        e.stopPropagation();
-        modal.querySelector('button, [href], input, select, textarea')?.focus();
-      }
-    }
-    async function openModal() {
-      lastFocused = document.activeElement;
-      modal.hidden = false;
-      await fade(modal, true, DUR_LONG);
-      modal.querySelector('#closeModal').focus();
-      document.addEventListener('focusin', trapFocus);
-    }
-    async function closeModal() {
-      await fade(modal, false, DUR_LONG);
-      modal.hidden = true;
-      document.removeEventListener('focusin', trapFocus);
-      lastFocused?.focus?.();
-    }
-    openModalBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.hidden) closeModal();
-    });
-
-    // ========= Micro interactions =========
-    document.querySelectorAll('button, a').forEach(el => {
-      el.addEventListener('pointerdown', () => micro(el));
-      el.addEventListener('mouseenter', () => {
-        if (prefersReduced) return;
-        el.animate([{ transform: 'translateY(-1px)' }, { transform: 'translateY(0)' }],
-                   { duration: 120, easing: 'ease-out', fill: 'none' });
+      btn.addEventListener('click', () => {
+        gsap.to(li, { opacity: 0, x: 20, duration: 0.3, onComplete: () => li.remove() });
       });
-    });
-
-    // ========= Demo micro interaction on About =========
-    document.getElementById('spinBtn').addEventListener('click', (e) => {
-      if (prefersReduced) return;
-      e.target.animate(
-        [{ transform: 'rotate(0deg) scale(1)' }, { transform: 'rotate(360deg) scale(1.05)' }, { transform: 'rotate(360deg) scale(1)' }],
-        { duration: 600, easing: 'cubic-bezier(.3,1,.3,1)' }
-      );
     });
   </script>
 </body>
